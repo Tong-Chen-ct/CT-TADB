@@ -18,7 +18,7 @@ CT-TADB is a deep learning framework that integrates convolutional neural networ
 ### 1. Clone the AttentionTAD repository
 
 ```bash
-git clone https://github.com/Tong-Chen-ct/CT-TADB/
+git clone https://github.com/Tong-Chen-ct/CT-TADB
 cd CT-TADB
 ```
 
