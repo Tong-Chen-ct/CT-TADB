@@ -15,7 +15,7 @@ CT-TADB is a deep learning framework that integrates convolutional neural networ
 
 ## Steps to Install and Run CT-TADB
 
-### 1. Clone the AttentionTAD repository
+### 1. Clone the CT-TADB repository
 
 ```bash
 git clone https://github.com/Tong-Chen-ct/CT-TADB.git
@@ -40,7 +40,7 @@ The data folder contains TAD boundaries for various cell lines and TAD region da
 
 Download bigwig files of histone modification signals and transcription factor binding site signals (CTCF、H2A.Z、H3k9ac、H3k4me3、H3k4me2、H3k9me3、H3k27me3、H3k36me3、H3k27ac、H3k79me2、H3k4me1、H4k20me1﻿) from the ENCOD database
 
-### 4. Train the AttentionTAD model
+### 4. Train the CT-TADB model
 
 ```bash
 python Model.py
