@@ -36,7 +36,21 @@ matplotlib>=3.3.0
 
 ### 3. Prepare your input data
 
-The data folder contains TAD boundaries for various cell lines and TAD region data for independent test sets. It is necessary to convert TAD regions into TAD boundaries.
+This data folder contains the TAD boundary information for different cell lines as well as the TAD region data of the independent test set. To ensure the effective utilization of the data, you need to follow the following steps for data processing and conversion.
+1. Convert TAD Regions to TAD Boundaries
+
+For the independent test set containing TAD region data, use the TAD_change_Boundaries.py script to convert the TAD region data into TAD boundary information.
+```bash
+python TAD_change_Boundaries.py
+```
+2. One-hot Encoding to Generate Final Input Data
+   
+All TAD boundary information should be processed using the one_hot.py script to apply one-hot encoding, generating the final input files. This step converts the boundary information into a format suitable for model input, producing .npy files.
+Command example:
+```bash
+python one_hot.py
+```
+3.After one-hot encoding, the resulting .npy files will serve as the model input data for further analysis and training.
 
 Download bigwig files of histone modification signals and transcription factor binding site signals (CTCF、H2A.Z、H3k9ac、H3k4me3、H3k4me2、H3k9me3、H3k27me3、H3k36me3、H3k27ac、H3k79me2、H3k4me1、H4k20me1﻿) from the ENCOD database
 
@@ -52,6 +66,9 @@ python Model.py
 python Test.py
 ```
 
+### 6. Output Result Analysis  
+For example, as shown in the figure, for the position indicated by the arrow within the region chr8:29,000,000 - 30,000,000, the model weight of GM12878 predicts that the probability of this region being a TAD boundary is 0.895; The K562 model predicts that the probability of this region being a TAD boundary is only 0.256. The prediction results are consistent with the Hi-C results.
+
 ## Model Architecture
 
 CT-TADB include:
@@ -61,6 +78,9 @@ CT-TADB include:
 - Each convolutional layer is followed by a ReLU activation function and a max-pooling layer.
 - A multi-head attention mechanism is employed. num_heads = 4, ff_dim = Transformer_fim = 32
 - An output layer with a sigmoid activation function computes boundary probabilities.
+- Experiments were conducted on NVIDIA A800-SXM4-80GB (CUDA 12.2) and NVIDIA GeForce RTX 3090 (CUDA 11.7) platforms. 
+
+Under the default 10 kb input setting with batch size = 16, each training epoch requires approximately 1 min 47 s, and the complete training process takes approximately 1 hour on an NVIDIA GeForce RTX 3090 (24 GB GPU memory). Peak GPU memory usage was monitored using nvidia-smi. 
 
 ## File Structure
 
@@ -72,8 +92,8 @@ CT-TADB/
 ├── SHAPE.py
 ├── deeplift.py
 ├── Model.hdf5
+├── fimo.txt
 ├── data
-├── DNA
     ├── GM12878_manually_annotated_TADs.bed
     ├── GM12878_TAD_boundaries.bed
     ├── HMEC_TAD_boundaries.bed
@@ -81,4 +101,6 @@ CT-TADB/
     ├── IMR90_TAD_boundaries.bed
     ├── K562_TAD_boundaries.bed
     └── NHEK_TAD_boundaries.bed
+    └── TAD_change_Boundaries.py
+    └── one_hot.py
 ```
