@@ -67,7 +67,10 @@ python Test.py
 ```
 
 ### 6. Output Result Analysis  
-For example, as shown in the figure, for the position indicated by the arrow within the region chr8:29,000,000 - 30,000,000, the model weight of GM12878 predicts that the probability of this region being a TAD boundary is 0.895; The K562 model predicts that the probability of this region being a TAD boundary is only 0.256. The prediction results are consistent with the Hi-C results.
+For example, as shown in the figure, for the position indicated by the arrow within the region chr8:29,000,000 - 30,000,000, the model weight of GM12878 predicts that the probability of this region being a TAD boundary is 0.895; The K562 model predicts that the probability of this region being a TAD boundary is only 0.026. The prediction results are consistent with the Hi-C results.
+
+![Example of TAD prediction](https://raw.githubusercontent.com/Tong-Chen-ct/CT-TADB/main/example_01.png)
+
 
 ## Model Architecture
 
